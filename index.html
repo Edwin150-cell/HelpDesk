@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/menu.css">
+    <title>Login de usuario</title>
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+    <div id="formContent">
+    <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="https://cdn-icons-png.flaticon.com/512/1000/1000946.png" id="icon" alt="User Icon" />
+            <h1>Help-desk</h1>
+        </div>
+
+    <!-- Login Form -->
+        <form id="frmLogin" method="POST" onsubmit="return loginUsuario()">
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="username" required>
+            <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" required>
+            <input type="submit" class="fadeIn fourth" value="Entrar">
+        </form>
+
+    <!-- Remind Passowrd -->
+        <div id="formFooter">
+        <a class="underlineHover" href="#" data-bs-toggle="modal" data-bs-target="#modalContacto">Con dudas contacta al admin</a>
+        </div>
+
+        </div>
+    </div>
+    
+<div class="modal fade" id="modalContacto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Contacto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Si no cuentas con una credencial contactame: fuckboy123@gmail.com
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="public/sweetalert2/sweetalert2@11.js"></script>
+    <script src="public/js/usuarios/login.js"></script>
+</body>
+</html>
