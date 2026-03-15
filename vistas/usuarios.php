@@ -22,6 +22,7 @@
     include "usuarios/modalAgregar.php";
     include "footer.php";
 ?>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="../public/js/usuarios/usuarios.js"></script>
 <?php
     } else {

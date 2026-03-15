@@ -45,7 +45,7 @@
         <?php } ?>
                 <li class="nav-item dropdown">
                     <a style="color:green" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Usuario: <?php echo $_SESSION ['usuarios']['nombre'] ?>
+                    Usuario: <?php echo $_SESSION ['usuario']['nombre'] ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#">Editar datos</a></li>

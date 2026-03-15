@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <label for="fechaNacimiento">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="fechaNacimiento" name="paterno">
+                    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
                 </div>
                 <div class="col-sm-4">
                     <label for="sexo">Sexo</label>
@@ -36,13 +36,13 @@
                 </div>
                 <div class="col-sm-4">
                     <label for="telefono">Telefono</label>
-                    <input type="mail" class="form-control" id="telefono" name="telefono">
+                    <input type="text" class="form-control" id="telefono" name="telefono">
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
                     <label for="correo">Correo</label>
-                    <input type="text" class="form-control" id="correo" name="correo">
+                    <input type="mail" class="form-control" id="correo" name="correo">
                 </div>
                 <div class="col-sm-4">
                     <label for="usuario">Usuario</label>
