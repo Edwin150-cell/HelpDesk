@@ -25,12 +25,14 @@
             <li class="nav-item active">
                 <a class="nav-link" href="inicio.php">Inico</a>
             </li>
+        <?php if($_SESSION['usurio']['rol'] == 1) {  ?>
             <li class="nav-item">
                 <a class="nav-link" href="misDispositivos.php">Mis Dispositivos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="misReportes.php">Reportes para Soporte</a>
             </li>
+        <?php } else if($_SESSION['usurio']['rol'] == 2) {?>
 <!--ADMINISTRADOR-->
             <li class="nav-item">
                 <a class="nav-link" href="usuarios.php">Usuarios</a>
@@ -41,6 +43,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="reportes.php">Reportes</a>
             </li>
+        <?php } ?>
                 <li class="nav-item dropdown">
                     <a style="color:green" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Usuario: <?php echo $_SESSION ['usuarios']['nombre'] ?>
