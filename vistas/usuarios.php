@@ -7,12 +7,19 @@
 <!-- Page Content -->
 <section class="py-5">
 <div class="container">
-    <h1 class="fw-light">Usuarios</h1>
-    <p class="lead">The background images for the slider <a href="https://unsplash.com">Unsplash</a>!</p>
+    <h1 class="fw-light">Administrar Usuarios</h1>
+    <p class="lead"> 
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarUsuarios">
+            Agregar Usuario
+        </button>
+        <hr>
+        <div id="tablaUsuariosLoad"></div>
+    <a href="https://unsplash.com">Unsplash</a>!</p>
 </div>
 </section>
 
 <?php
+    include "usuarios/modalAgregar.php";
     include "footer.php";
     } else {
     header("location:../index.html");
