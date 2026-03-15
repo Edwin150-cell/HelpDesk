@@ -21,6 +21,9 @@
 <?php
     include "usuarios/modalAgregar.php";
     include "footer.php";
+?>
+    <script src="../public/js/usuarios/usuarios.js"></script>
+<?php
     } else {
     header("location:../index.html");
     exit();
