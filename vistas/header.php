@@ -23,17 +23,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="inicio.php">Inico</a>
+                <a class="nav-link" href="inicio.php">Inicio</a>
             </li>
-        <?php if($_SESSION['usurio']['rol'] == 1) {  ?>
+        <?php if($_SESSION['usuario']['rol'] == 1) { ?>
             <li class="nav-item">
                 <a class="nav-link" href="misDispositivos.php">Mis Dispositivos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="misReportes.php">Reportes para Soporte</a>
             </li>
-        <?php } else if($_SESSION['usurio']['rol'] == 2) {?>
-<!--ADMINISTRADOR-->
+        <?php } else if($_SESSION['usuario']['rol'] == 2) { ?>
             <li class="nav-item">
                 <a class="nav-link" href="usuarios.php">Usuarios</a>
             </li>

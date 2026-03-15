@@ -1,7 +1,7 @@
-<?php 
-    include "header.php"; 
-    if (isset($_SESSION['usuario']) && 
-        $_SESSION['usuario']['id'] == 1) {
+<?php
+    session_start();
+    if (isset($_SESSION['usuario']) && $_SESSION['usuario']['rol'] == 1) {
+    include "header.php";
 ?>
 
 <!-- Page Content -->
@@ -12,8 +12,8 @@
 </div>
 </section>
 
-<?php 
-    include "footer.php"; 
+<?php
+    include "footer.php";
     } else {
         header("location:../index.html");
         exit();
