@@ -2,9 +2,7 @@
     session_start();
     $usuario = $_POST['login'];
     $password = sha1($_POST['password']);
-
-    include "../../../clases/Usuarios.php";
+    require_once "../../../clases/Usuarios.php";
     $Usuarios = new Usuarios();
-
-    echo $Usuarios->loginUsuario($usuario, $password)
+    echo $Usuarios->loginUsuario($usuario, $password);
 ?>

@@ -1,32 +1,89 @@
 <?php
-    include "Conexion.php";
+include "Conexion.php";
 
-    class Usuarios extends Conexion {
+class Usuarios extends Conexion {
 
-        public function loginUsuario($usuario, $password){
+    public function agregarNuevoUsuario($datos){
 
-            session_start();
+        $conexion = Conexion::conectar();
 
-            $conexion = Conexion::conectar();
+        $sqlPersona = "INSERT INTO t_persona
+        (paterno, materno, nombre, fecha_nacimiento, sexo, telefono, correo)
+        VALUES (?,?,?,?,?,?,?)";
 
-            $sql = "SELECT * FROM t_usuarios
-                WHERE usuario = '$usuario' AND password = '$password'";
+        $query = $conexion->prepare($sqlPersona);
 
-            $respuesta = mysqli_query($conexion, $sql);
+        $query->bind_param(
+            "sssssss",
+            $datos['paterno'],
+            $datos['materno'],
+            $datos['nombre'],
+            $datos['fechaNacimiento'],
+            $datos['sexo'],
+            $datos['telefono'],
+            $datos['correo']
+        );
 
-            if (mysqli_num_rows($respuesta) > 0) {
+        $respuesta = $query->execute();
 
-                $datosUsuario = mysqli_fetch_array($respuesta);
+        $idPersona = mysqli_insert_id($conexion);
 
-                $_SESSION['usuario']['nombre'] = $datosUsuario['usuario'];
-                $_SESSION['usuario']['id'] = $datosUsuario['id_usuario'];
-                $_SESSION['usuario']['rol'] = $datosUsuario['id_rol'];
+        if($idPersona > 0){
 
-                return 1;
+            $sqlUsuario = "INSERT INTO t_usuarios
+            (id_rol,id_persona,usuario,password,ubicacion)
+            VALUES (?,?,?,?,?)";
 
-            } else {
-                return 0;
-            }
+            $query = $conexion->prepare($sqlUsuario);
+
+            $query->bind_param(
+                "iisss",
+                $datos['idRol'],
+                $idPersona,
+                $datos['usuario'],
+                $datos['password'],
+                $datos['ubicacion']
+            );
+
+            return $query->execute();
+
+        }else{
+            return 0;
         }
+
     }
+
+    public function loginUsuario($usuario, $password){
+
+        $conexion = Conexion::conectar();
+
+        $sql = "SELECT 
+                    id_usuario,
+                    usuario,
+                    id_rol
+                FROM t_usuarios
+                WHERE usuario = '$usuario'
+                AND password = '$password'";
+
+        $respuesta = mysqli_query($conexion, $sql);
+
+        if(mysqli_num_rows($respuesta) > 0){
+
+            $datos = mysqli_fetch_assoc($respuesta);
+
+            $_SESSION['usuario'] = array(
+                "id" => $datos['id_usuario'],
+                "usuario" => $datos['usuario'],
+                "rol" => $datos['id_rol']
+            );
+
+            return 1;
+
+        }else{
+            return 0;
+        }
+
+    }
+
+}
 ?>

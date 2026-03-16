@@ -1,15 +1,43 @@
-$(document).ready(function() {
-    $('#tablaUsuariosLoad').load("usuarios/tablaUsuarios.php", function() {
-        $('#tablaUsuariosDataTable').DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
-            }
-        });
-    });
+$(document).ready(function(){
+
+    $('#tablaUsuariosLoad').load("usuarios/tablaUsuarios.php");
+
 });
 
 
-function agregarNuevoUsuario(){
-    alert("Está funcionando");
-    return false;
-}
+$('#btnAgregarUsuario').click(function(){
+
+    let datos = $('#frmAgregarUsuario').serialize();
+
+    $.ajax({
+        type: "POST",
+        url: "../procesos/usuarios/crud/agregarNuevoUsuario.php",
+        data: datos,
+
+        success: function(respuesta){
+
+            if(respuesta == 1){
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Usuario agregado correctamente'
+                });
+
+                $('#frmAgregarUsuario')[0].reset();
+
+                $('#tablaUsuariosLoad').load("usuarios/tablaUsuarios.php");
+
+            }else{
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se pudo agregar el usuario'
+                });
+
+            }
+
+        }
+
+    });
+
+});

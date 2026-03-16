@@ -1,80 +1,98 @@
-<form id="frmAgregarUsuario" method="POST" onsubmit="return agregarNuevoUsuario()">
-    <!-- Modal -->
-    <div class="modal fade" id="modalAgregarUsuarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<!-- Modal -->
+<div class="modal fade" id="modalAgregarUsuarios" tabindex="-1">
+    <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo Usuario</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-sm-4">
-                    <label for="paterno">Apellido Paterno</label>
-                    <input type="text" class="form-control" id="paterno" name="paterno" required>
+
+            <form id="frmAgregarUsuario" method="POST">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="col-sm-4">
-                    <label for="materno">Apellido Materno</label>
-                    <input type="text" class="form-control" id="materno" name="materno" required>
+
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label>Paterno</label>
+                            <input type="text" class="form-control" name="paterno">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Materno</label>
+                            <input type="text" class="form-control" name="materno">
+                        </div>
+
+                        <div class="col-md-6 mt-2">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" name="nombre">
+                        </div>
+
+                        <div class="col-md-6 mt-2">
+                            <label>Fecha Nacimiento</label>
+                            <input type="date" class="form-control" name="fechaNacimiento">
+                        </div>
+
+                        <div class="col-md-6 mt-2">
+                            <label>Sexo</label>
+                            <select class="form-control" name="sexo">
+                                <option value="M">M</option>
+                                <option value="F">F</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mt-2">
+                            <label>Telefono</label>
+                            <input type="text" class="form-control" name="telefono">
+                        </div>
+
+                        <div class="col-md-12 mt-2">
+                            <label>Correo</label>
+                            <input type="email" class="form-control" name="correo">
+                        </div>
+
+                        <div class="col-md-6 mt-2">
+                            <label>Usuario</label>
+                            <input type="text" class="form-control" name="usuario">
+                        </div>
+
+                        <div class="col-md-6 mt-2">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+
+                        <div class="col-md-6 mt-2">
+                            <label>Rol</label>
+                            <select class="form-control" name="idRol">
+                                <option value="1">Cliente</option>
+                                <option value="2">Admin</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mt-2">
+                            <label>Ubicación</label>
+                            <input type="text" class="form-control" name="ubicacion">
+                        </div>
+
+                    </div>
+
                 </div>
-                <div class="col-sm-4">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+
+                    <button type="button" class="btn btn-primary" id="btnAgregarUsuario">
+                        Agregar Usuario
+                    </button>
+
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <label for="fechaNacimiento">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
-                </div>
-                <div class="col-sm-4">
-                    <label for="sexo">Sexo</label>
-                    <select class="form-control" id="sexo" name="sexo">
-                        <option value="F">Femenino</option>
-                        <option value="M">Masculino</option>
-                    </select>
-                </div>
-                <div class="col-sm-4">
-                    <label for="telefono">Telefono</label>
-                    <input type="text" class="form-control" id="telefono" name="telefono">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <label for="correo">Correo</label>
-                    <input type="mail" class="form-control" id="correo" name="correo">
-                </div>
-                <div class="col-sm-4">
-                    <label for="usuario">Usuario</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario">
-                </div>
-                <div class="col-sm-4">
-                    <label for="contraseña">Contraseña</label>
-                    <input type="text" class="form-control" id="contraseña" name="contraseña">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <label for="idRol">Rol de Usuario</label>
-                    <select name="idRol" id="idRol" class="form-control">
-                        <option value="1">Cliente</option>
-                        <option value="2">Administrador</option>
-                    </select>                
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-sm-12">
-                    <label for="ubicacion">Ubicacion</label>
-                <textarea name="ubicacion" id="ubicacion" class="form-control"></textarea>             
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <span class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</span>
-            <button class="btn btn-primary">Agregar</button>
-        </div>
+
+            </form>
+
         </div>
     </div>
-    </div>
-</form>
+</div>

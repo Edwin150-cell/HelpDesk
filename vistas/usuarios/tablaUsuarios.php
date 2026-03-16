@@ -41,7 +41,7 @@ if (!$respuesta) {
             <th>Nombre</th>
             <th>Fecha Nacimiento</th>
             <th>Sexo</th>
-            <th>Telefono</th>
+            <th>Teléfono</th>
             <th>Correo</th>
             <th>Usuario</th>
             <th>Estado</th>
@@ -53,112 +53,106 @@ if (!$respuesta) {
 
         <?php while ($mostrar = mysqli_fetch_array($respuesta)) { ?>
 
-            <tr>
+        <tr>
 
-                <td><?php echo $mostrar['paterno']; ?></td>
-                <td><?php echo $mostrar['materno']; ?></td>
-                <td><?php echo $mostrar['nombrepersona']; ?></td>
-                <td><?php echo $mostrar['fechaNacimiento']; ?></td>
-                <td><?php echo $mostrar['sexo']; ?></td>
-                <td><?php echo $mostrar['telefono']; ?></td>
-                <td><?php echo $mostrar['correo']; ?></td>
-                <td><?php echo $mostrar['nombreUsuario']; ?></td>
+            <td><?php echo $mostrar['paterno']; ?></td>
+            <td><?php echo $mostrar['materno']; ?></td>
+            <td><?php echo $mostrar['nombrepersona']; ?></td>
+            <td><?php echo $mostrar['fechaNacimiento']; ?></td>
+            <td><?php echo $mostrar['sexo']; ?></td>
+            <td><?php echo $mostrar['telefono']; ?></td>
+            <td><?php echo $mostrar['correo']; ?></td>
+            <td><?php echo $mostrar['nombreUsuario']; ?></td>
 
-                <td>
-                    <?php
-                        if ($mostrar['estatus'] == 1) {
-                            echo '<span class="badge bg-success">Activo</span>';
-                        } else {
-                            echo '<span class="badge bg-danger">Desactivado</span>';
-                        }
-                    ?>
-                </td>
+            <td>
+                <?php
+                if ($mostrar['estatus'] == 1) {
+                    echo '<span class="badge bg-success">Activo</span>';
+                } else {
+                    echo '<span class="badge bg-danger">Desactivado</span>';
+                }
+                ?>
+            </td>
 
-                <td>
+            <td>
 
-                    <div class="dropdown">
+                <div class="dropdown">
 
-                        <button 
-                            class="btn btn-outline-secondary btn-sm dropdown-toggle"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                        >
-                            Opciones
-                        </button>
+                    <button 
+                        class="btn btn-outline-secondary btn-sm dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                    >
+                        Opciones
+                    </button>
 
-                        <ul class="dropdown-menu">
+                    <ul class="dropdown-menu">
 
-                            <li>
-                                <button class="dropdown-item text-success">
-                                    Cambiar Password
-                                </button>
-                            </li>
+                        <li>
+                            <button class="dropdown-item text-success">
+                                Cambiar Password
+                            </button>
+                        </li>
 
-                            <li>
-                                <button class="dropdown-item text-primary">
-                                    Cambiar Rol
-                                </button>
-                            </li>
+                        <li>
+                            <button class="dropdown-item text-primary">
+                                Cambiar Rol
+                            </button>
+                        </li>
 
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                        <li><hr class="dropdown-divider"></li>
 
-                            <li class="dropdown-header">
-                                Estado del Usuario
-                            </li>
+                        <li class="dropdown-header">
+                            Estado del Usuario
+                        </li>
 
-                            <?php if ($mostrar['estatus'] == 1) { ?>
+                        <?php if ($mostrar['estatus'] == 1) { ?>
 
-                                <li>
-                                    <button class="dropdown-item text-danger">
-                                        Desactivar Usuario
-                                    </button>
-                                </li>
+                        <li>
+                            <button class="dropdown-item text-danger">
+                                Desactivar Usuario
+                            </button>
+                        </li>
 
-                            <?php } else { ?>
+                        <?php } else { ?>
 
-                                <li>
-                                    <button class="dropdown-item text-success">
-                                        Activar Usuario
-                                    </button>
-                                </li>
+                        <li>
+                            <button class="dropdown-item text-success">
+                                Activar Usuario
+                            </button>
+                        </li>
 
-                            <?php } ?>
+                        <?php } ?>
 
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                        <li><hr class="dropdown-divider"></li>
 
-                            <li>
-                                <span class="dropdown-item-text">
-                                    Ubicación: <?php echo $mostrar['ubicacion']; ?>
-                                </span>
-                            </li>
+                        <li>
+                            <span class="dropdown-item-text">
+                                Ubicación: <?php echo $mostrar['ubicacion']; ?>
+                            </span>
+                        </li>
 
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                        <li><hr class="dropdown-divider"></li>
 
-                            <li>
-                                <button class="dropdown-item text-warning">
-                                    Editar
-                                </button>
-                            </li>
+                        <li>
+                            <button class="dropdown-item text-warning">
+                                Editar
+                            </button>
+                        </li>
 
-                            <li>
-                                <button class="dropdown-item text-danger">
-                                    Eliminar
-                                </button>
-                            </li>
+                        <li>
+                            <button class="dropdown-item text-danger">
+                                Eliminar
+                            </button>
+                        </li>
 
-                        </ul>
+                    </ul>
 
-                    </div>
+                </div>
 
-                </td>
+            </td>
 
-            </tr>
+        </tr>
 
         <?php } ?>
 
@@ -166,16 +160,16 @@ if (!$respuesta) {
 
 </table>
 
+
 <script>
 
-    $(document).ready(function () {
+$(document).ready(function () {
 
-        $('#tablaUsuariosDataTable').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
-            }
-        });
+    $('#tablaUsuariosDataTable').DataTable({
 
+        destroy: true,
     });
+
+});
 
 </script>
