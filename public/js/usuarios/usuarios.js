@@ -41,3 +41,15 @@ $('#btnAgregarUsuario').click(function(){
     });
 
 });
+
+function obtenerDatosUsuario(idUsuario) {
+    $.ajax({
+        type: "POST",
+        data: "idUsuario=" + idUsuario,
+        url: "../procesos/usuarios/crud/obtenerDatosUsuario.php",
+        success: function(respuesta) {
+            respuesta = JSON.parse(respuesta);
+            console.log(respuesta);
+                }
+    });
+}
