@@ -40,10 +40,11 @@ if (!$respuesta) {
             <th>Apellido Materno</th>
             <th>Nombre</th>
             <th>Fecha Nacimiento</th>
-            <th>Sexo</th>
             <th>Teléfono</th>
             <th>Correo</th>
             <th>Usuario</th>
+            <th>Ubicacion</th>
+            <th>Sexo</th>
             <th>Estado</th>
             <th>Acciones</th>
         </tr>
@@ -59,10 +60,11 @@ if (!$respuesta) {
             <td><?php echo $mostrar['materno']; ?></td>
             <td><?php echo $mostrar['nombrepersona']; ?></td>
             <td><?php echo $mostrar['fechaNacimiento']; ?></td>
-            <td><?php echo $mostrar['sexo']; ?></td>
             <td><?php echo $mostrar['telefono']; ?></td>
             <td><?php echo $mostrar['correo']; ?></td>
             <td><?php echo $mostrar['nombreUsuario']; ?></td>
+            <td><?php echo $mostrar['ubicacion']; ?></td>
+            <td><?php echo $mostrar['sexo']; ?></td>
 
             <td>
                 <?php
@@ -93,13 +95,7 @@ if (!$respuesta) {
                                 Cambiar Password
                             </button>
                         </li>
-
-                        <li>
-                            <button class="dropdown-item text-primary">
-                                Cambiar Rol
-                            </button>
-                        </li>
-
+                        
                         <li><hr class="dropdown-divider"></li>
 
                         <li class="dropdown-header">
@@ -126,16 +122,14 @@ if (!$respuesta) {
 
                         <li><hr class="dropdown-divider"></li>
 
-                        <li>
-                            <span class="dropdown-item-text">
-                                Ubicación: <?php echo $mostrar['ubicacion']; ?>
-                            </span>
-                        </li>
-
                         <li><hr class="dropdown-divider"></li>
 
                         <li>
-                            <button class="dropdown-item text-warning">
+                            <button
+                                class="dropdown-item text-warning"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalActualizarUsuarios"
+                                onclick="obtenerDatosUsuario('<?php echo $mostrar['idUsuario']; ?>')">
                                 Editar
                             </button>
                         </li>
