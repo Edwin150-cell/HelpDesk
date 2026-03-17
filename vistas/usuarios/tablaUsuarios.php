@@ -127,7 +127,7 @@ if (!$respuesta) {
                         <li>
                             <button
                                 class="btn btn-warning btn-sm"
-                                onclick="editarUsuario(<?php echo $mostrar['idUsuario']; ?>)">
+                                onclick="obtenerDatosUsuario(<?php echo $mostrar['idUsuario']; ?>)">
                                 Editar
                             </button>
                         </li>

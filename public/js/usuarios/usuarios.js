@@ -42,7 +42,7 @@ $('#btnAgregarUsuario').click(function(){
 
 });
 
-function editarUsuario(idUsuario) {
+function obtenerDatosUsuario(idUsuario) {
     $.ajax({
         type: "POST",
         data: "idUsuario=" + idUsuario,
@@ -62,8 +62,47 @@ function editarUsuario(idUsuario) {
             $('#usuariou').val(respuesta.nombreUsuario);
             $('#idRolu').val(respuesta.idRol);
             $('#ubicacionu').val(respuesta.ubicacion);
-
+            
             $('#modalActualizarUsuarios').modal('show');
         }
     });
 }
+function actualizarUsuario() {
+    let datos = $('#frmActualizarUsuario').serialize();
+
+    $.ajax({
+        type: "POST",
+        url: "../procesos/usuarios/crud/actualizarUsuario.php",
+        data: datos,
+        success: function(respuesta) {
+
+            respuesta = respuesta.trim();
+
+            if (respuesta == 1) {
+
+                $('#modalActualizarUsuarios').modal('hide');
+
+                $('#tablaUsuariosLoad').load("usuarios/tablaUsuarios.php");
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Usuario actualizado correctamente'
+                });
+
+            } else {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No se pudo actualizar el usuario'
+                });
+
+            }
+        }
+    });
+
+    return false;
+}
+$('#btnActualizarUsuario').click(function() {
+    actualizarUsuario();
+    return false;
+});

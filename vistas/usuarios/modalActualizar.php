@@ -13,49 +13,49 @@
                      <div class="row">
                         <div class="col-md-6">
                             <label>Paterno</label>
-                            <input type="text" class="form-control" id="paternou" name="paternou">
+                            <input type="text" class="form-control" id="paternou" name="paterno">
                         </div>
                         <div class="col-md-6">
                             <label>Materno</label>
-                            <input type="text" class="form-control" id="maternou" name="maternou">
+                            <input type="text" class="form-control" id="maternou" name="materno">
                         </div>
                         <div class="col-md-6 mt-2">
                             <label>Nombre</label>
-                            <input type="text" class="form-control" id="nombreu" name="nombreu">
+                            <input type="text" class="form-control" id="nombreu" name="nombre">
                         </div>
                         <div class="col-md-6 mt-2">
                             <label>Fecha Nacimiento</label>
-                            <input type="date" class="form-control" id="fechaNacimientou" name="fechaNacimientou">
+                            <input type="date" class="form-control" id="fechaNacimientou" name="fechaNacimiento">
                         </div>
                         <div class="col-md-6 mt-2">
                             <label>Sexo</label>
-                            <select class="form-control" id="sexou" name="sexou">
+                            <select class="form-control" id="sexou" name="sexo">
                                 <option value="M">M</option>
                                 <option value="F">F</option>
                             </select>
                         </div>
                         <div class="col-md-6 mt-2">
                             <label>Telefono</label>
-                            <input type="text" class="form-control" id="telefonou" name="telefonou">
+                            <input type="text" class="form-control" id="telefonou" name="telefono">
                         </div>
                          <div class="col-md-12 mt-2">
                             <label>Correo</label>
-                            <input type="email" class="form-control" id="correou" name="correou">
+                            <input type="email" class="form-control" id="correou" name="correo">
                         </div>
                         <div class="col-md-6 mt-2">
                             <label>Usuario</label>
-                            <input type="text" class="form-control" id="usuariou" name="usuariou">
+                            <input type="text" class="form-control" id="usuariou" name="usuario">
                         </div>
                         <div class="col-md-6 mt-2">
                             <label>Rol</label>
-                            <select class="form-control" id="idRolu" name="idRolu">
+                            <select class="form-control" id="idRolu" name="idRol">
                                 <option value="1">Cliente</option>
                                 <option value="2">Admin</option>
                             </select>
                         </div>
                         <div class="col-md-12 mt-2">
                             <label>Ubicación</label>
-                            <input type="text" class="form-control" id="ubicacionu" name="ubicacionu">
+                            <input type="text" class="form-control" id="ubicacionu" name="ubicacion">
                         </div>
                     </div>
                 </div>

@@ -124,5 +124,62 @@ class Usuarios extends Conexion {
             return $datos;
     }
 
+    public function actualizarUsuario($datos){
+
+        $conexion = Conexion::conectar();
+
+        $sqlPersona = "UPDATE t_persona SET 
+                        paterno = ?, 
+                        materno = ?, 
+                        nombre = ?, 
+                        fecha_nacimiento = ?, 
+                        sexo = ?, 
+                        telefono = ?, 
+                        correo = ?
+                    WHERE id_persona = (
+                        SELECT id_persona FROM t_usuarios WHERE id_usuario = ?
+                    )";
+
+        $query = $conexion->prepare($sqlPersona);
+
+        $query->bind_param(
+            "sssssssi",
+            $datos['paterno'],
+            $datos['materno'],
+            $datos['nombre'],
+            $datos['fechaNacimiento'],
+            $datos['sexo'],
+            $datos['telefono'],
+            $datos['correo'],
+            $datos['idUsuario']
+        );
+
+        $respuesta1 = $query->execute();
+
+        $sqlUsuario = "UPDATE t_usuarios SET 
+                            usuario = ?, 
+                            id_rol = ?, 
+                            ubicacion = ?
+                        WHERE id_usuario = ?";
+
+        $query = $conexion->prepare($sqlUsuario);
+
+        $query->bind_param(
+            "sisi",
+            $datos['usuario'],
+            $datos['idRol'],
+            $datos['ubicacion'],
+            $datos['idUsuario']
+        );
+
+        $respuesta2 = $query->execute();
+
+        if($respuesta1 && $respuesta2){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
 }
 ?>
