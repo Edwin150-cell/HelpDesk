@@ -42,7 +42,7 @@ $('#btnAgregarUsuario').click(function(){
 
 });
 
-function obtenerDatosUsuario(idUsuario) {
+function editarUsuario(idUsuario) {
     $.ajax({
         type: "POST",
         data: "idUsuario=" + idUsuario,
@@ -50,6 +50,20 @@ function obtenerDatosUsuario(idUsuario) {
         success: function(respuesta) {
             respuesta = JSON.parse(respuesta);
             console.log(respuesta);
-                }
+
+            $('#idUsuariou').val(respuesta.idUsuario);
+            $('#paternou').val(respuesta.paterno);
+            $('#maternou').val(respuesta.materno);
+            $('#nombreu').val(respuesta.nombrepersona);
+            $('#fechaNacimientou').val(respuesta.fechaNacimiento);
+            $('#sexou').val(respuesta.sexo);
+            $('#telefonou').val(respuesta.telefono);
+            $('#correou').val(respuesta.correo);
+            $('#usuariou').val(respuesta.nombreUsuario);
+            $('#idRolu').val(respuesta.idRol);
+            $('#ubicacionu').val(respuesta.ubicacion);
+
+            $('#modalActualizarUsuarios').modal('show');
+        }
     });
 }

@@ -126,10 +126,8 @@ if (!$respuesta) {
 
                         <li>
                             <button
-                                class="dropdown-item text-warning"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modalActualizarUsuarios"
-                                onclick="obtenerDatosUsuario('<?php echo $mostrar['idUsuario']; ?>')">
+                                class="btn btn-warning btn-sm"
+                                onclick="editarUsuario(<?php echo $mostrar['idUsuario']; ?>)">
                                 Editar
                             </button>
                         </li>
