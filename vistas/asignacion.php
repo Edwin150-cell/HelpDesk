@@ -26,7 +26,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario']['rol'] == 2) {
 
 <?php
     include "asignacion/modalAsignar.php";
-    include "asignacion/modalEditar.php"; // 👈 IMPORTANTE
+    include "asignacion/modalEditar.php";
 ?>
 
 <?php include "footer.php"; ?>

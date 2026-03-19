@@ -1,5 +1,5 @@
 <?php
-include "Conexion.php";
+require_once "Conexion.php";
 
 class Usuarios extends Conexion {
 
@@ -50,80 +50,76 @@ class Usuarios extends Conexion {
         }else{
             return 0;
         }
-
     }
 
     public function loginUsuario($usuario, $password){
 
-    $conexion = Conexion::conectar();
-
-    $sql = "SELECT 
-                id_usuario,
-                usuario,
-                id_rol,
-                id_persona
-            FROM t_usuarios
-            WHERE usuario = '$usuario'
-            AND password = '$password'";
-
-    $respuesta = mysqli_query($conexion, $sql);
-
-    if(mysqli_num_rows($respuesta) > 0){
-
-        $datos = mysqli_fetch_assoc($respuesta);
-
-        $_SESSION['usuario'] = array(
-            "id" => $datos['id_usuario'],
-            "usuario" => $datos['usuario'],
-            "rol" => $datos['id_rol'],
-            "id_persona" => $datos['id_persona'] // 🔥 CLAVE
-        );
-
-        return 1;
-
-    }else{
-        return 0;
-    }
-    }
-
-     public function obtenerDatosUsuario($idUsuario){
         $conexion = Conexion::conectar();
+
         $sql = "SELECT 
-                    usuarios.id_usuario AS idUsuario,
-                    usuarios.usuario AS nombreUsuario,
-                    usuarios.id_rol AS idRol,
-                    usuarios.ubicacion AS ubicacion,
-                    usuarios.activo AS estatus,
-                    usuarios.id_persona AS idpersona,
-                    persona.nombre AS nombrepersona,
-                    persona.paterno AS paterno,
-                    persona.materno AS materno,
-                    persona.fecha_nacimiento AS fechaNacimiento,
-                    persona.sexo AS sexo,
-                    persona.correo AS correo,
-                    persona.telefono AS telefono
-                FROM t_usuarios AS usuarios
-                INNER JOIN t_persona AS persona
-                    ON usuarios.id_persona = persona.id_persona
-                WHERE usuarios.id_usuario = '$idUsuario'";
-        $respuesta = mysqli_query($conexion, $sql);
-        $usuario = mysqli_fetch_array($respuesta);
-        $datos = array(
-            "idUsuario" => $usuario['idUsuario'],
-            "nombreUsuario" => $usuario['nombreUsuario'],
-            "idRol" => $usuario['idRol'],
-            "ubicacion" => $usuario['ubicacion'],
-            "estatus" => $usuario['estatus'],
-            "idpersona" => $usuario['idpersona'],
-            "nombrepersona" => $usuario['nombrepersona'],
-            "paterno" => $usuario['paterno'],
-            "materno" => $usuario['materno'],
-            "fechaNacimiento" => $usuario['fechaNacimiento'],
-            "sexo" => $usuario['sexo'],
-            "correo" => $usuario['correo'],
-            "telefono" => $usuario['telefono']
-        );
-            return $datos;
+                    id_usuario,
+                    usuario,
+                    id_rol,
+                    id_persona
+                FROM t_usuarios
+                WHERE usuario = ?
+                AND password = ?";
+
+        $query = $conexion->prepare($sql);
+        $query->bind_param("ss", $usuario, $password);
+        $query->execute();
+
+        $resultado = $query->get_result();
+
+        if($resultado->num_rows > 0){
+
+            $datos = $resultado->fetch_assoc();
+
+            $_SESSION['usuario'] = array(
+                "id" => $datos['id_usuario'],
+                "usuario" => $datos['usuario'],
+                "rol" => $datos['id_rol'],
+                "id_persona" => $datos['id_persona']
+            );
+
+            return 1;
+
+        }else{
+            return 0;
+        }
+    }
+
+    public function obtenerDatosUsuario($idUsuario){
+
+        $conexion = Conexion::conectar();
+
+        $sql = "SELECT 
+                    u.id_usuario AS idUsuario,
+                    u.usuario AS nombreUsuario,
+                    u.id_rol AS idRol,
+                    u.ubicacion AS ubicacion,
+                    u.activo AS estatus,
+                    u.id_persona AS idpersona,
+                    p.nombre AS nombrepersona,
+                    p.paterno AS paterno,
+                    p.materno AS materno,
+                    p.fecha_nacimiento AS fechaNacimiento,
+                    p.sexo AS sexo,
+                    p.correo AS correo,
+                    p.telefono AS telefono
+                FROM t_usuarios u
+                INNER JOIN t_persona p 
+                    ON u.id_persona = p.id_persona
+                WHERE u.id_usuario = ?";
+
+        $query = $conexion->prepare($sql);
+        $query->bind_param("i", $idUsuario);
+        $query->execute();
+
+        $resultado = $query->get_result();
+        $usuario = $resultado->fetch_assoc();
+
+        return $usuario;
     }
 
     public function actualizarUsuario($datos){
@@ -159,10 +155,10 @@ class Usuarios extends Conexion {
         $respuesta1 = $query->execute();
 
         $sqlUsuario = "UPDATE t_usuarios SET 
-                            usuario = ?, 
-                            id_rol = ?, 
-                            ubicacion = ?
-                        WHERE id_usuario = ?";
+                        usuario = ?, 
+                        id_rol = ?, 
+                        ubicacion = ?
+                    WHERE id_usuario = ?";
 
         $query = $conexion->prepare($sqlUsuario);
 

@@ -49,7 +49,7 @@
                     Usuario: <?php echo $_SESSION ['usuario']['nombre'] ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Editar datos</a></li>
+                    <a class="dropdown-item" href="editarUsuario.php">Editar datos</a>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="../procesos/usuarios/login/salir.php">Salir</a></li>
                 </ul>
