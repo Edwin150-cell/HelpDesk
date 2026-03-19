@@ -3,7 +3,7 @@
     if (isset($_SESSION['usuario']) && $_SESSION['usuario']['rol'] == 1) {
     include "header.php";
 ?>
-<!-- Page Content -->
+
 <section class="py-5">
 <div class="container">
     <h1 class="fw-light">Reportes para soporte</h1>

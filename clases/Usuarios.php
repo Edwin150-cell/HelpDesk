@@ -55,35 +55,37 @@ class Usuarios extends Conexion {
 
     public function loginUsuario($usuario, $password){
 
-        $conexion = Conexion::conectar();
+    $conexion = Conexion::conectar();
 
-        $sql = "SELECT 
-                    id_usuario,
-                    usuario,
-                    id_rol
-                FROM t_usuarios
-                WHERE usuario = '$usuario'
-                AND password = '$password'";
+    $sql = "SELECT 
+                id_usuario,
+                usuario,
+                id_rol,
+                id_persona
+            FROM t_usuarios
+            WHERE usuario = '$usuario'
+            AND password = '$password'";
 
-        $respuesta = mysqli_query($conexion, $sql);
+    $respuesta = mysqli_query($conexion, $sql);
 
-        if(mysqli_num_rows($respuesta) > 0){
+    if(mysqli_num_rows($respuesta) > 0){
 
-            $datos = mysqli_fetch_assoc($respuesta);
+        $datos = mysqli_fetch_assoc($respuesta);
 
-            $_SESSION['usuario'] = array(
-                "id" => $datos['id_usuario'],
-                "usuario" => $datos['usuario'],
-                "rol" => $datos['id_rol']
-            );
+        $_SESSION['usuario'] = array(
+            "id" => $datos['id_usuario'],
+            "usuario" => $datos['usuario'],
+            "rol" => $datos['id_rol'],
+            "id_persona" => $datos['id_persona'] // 🔥 CLAVE
+        );
 
-            return 1;
+        return 1;
 
-        }else{
-            return 0;
-        }
-
+    }else{
+        return 0;
     }
+    }
+
      public function obtenerDatosUsuario($idUsuario){
         $conexion = Conexion::conectar();
         $sql = "SELECT 

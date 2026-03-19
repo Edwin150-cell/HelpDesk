@@ -11,7 +11,6 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario']['rol'] == 2) {
 
         <h1 class="fw-light">Asignación de Equipos</h1>
 
-        <!-- BOTÓN -->
         <button class="btn btn-primary"
             data-bs-toggle="modal"
             data-bs-target="#modalAsignarEquipo">
@@ -20,7 +19,6 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario']['rol'] == 2) {
 
         <hr>
 
-        <!-- TABLA -->
         <div id="tablaAsignacionLoad"></div>
 
     </div>
@@ -28,18 +26,19 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario']['rol'] == 2) {
 
 <?php
     include "asignacion/modalAsignar.php";
+    include "asignacion/modalEditar.php"; // 👈 IMPORTANTE
 ?>
 
-<!-- SCRIPT TABLA -->
+<?php include "footer.php"; ?>
+
+<script src="../public/js/asignacion.js"></script>
+
 <script>
 $(document).ready(function(){
     $('#tablaAsignacionLoad').load("asignacion/tablaAsignacion.php");
 });
 </script>
 
-<?php include "footer.php"; ?>
-
-<!-- DEBUG -->
 <script>
 console.log("Bootstrap:", typeof bootstrap);
 </script>
